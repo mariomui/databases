@@ -27,6 +27,7 @@ module.exports = {
           return;
         }
         console.log(data, 'datadata');
+        res.end('asdfasfd');
       });
       // let body = '';
       // const {json, url} = req;
@@ -42,7 +43,6 @@ module.exports = {
       //     }
       //     console.log(data);
       //   });
-      res.end('');
       // // });
       // console.log(req.body, 'get req body request get');
       // res.end(';llj;');
@@ -65,6 +65,7 @@ module.exports = {
           return;
         }
         console.log(results);
+        console.log(fields, "fields"); //unnecessary
         // console.log(req.body);
        res.end('ending the func')
       });

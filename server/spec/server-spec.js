@@ -16,7 +16,7 @@ describe('Persistent Node Chat Server', function() {
     });
     dbConnection.connect();
 
-       var tablename = ""; // TODO: fill this out
+       var tablename = "messages"; // TODO: fill this out
 
     /* Empty the db table before each test so that multiple tests
      * (or repeated runs of the tests) won't screw each other up: */
@@ -50,10 +50,15 @@ describe('Persistent Node Chat Server', function() {
         // TODO: You might have to change this test to get all the data from
         // your message table, since this is schema-dependent.
         var queryString = 'SELECT * FROM messages';
-        var queryArgs = [];
+        var queryArgs = [true]; //marioquestion
 
         dbConnection.query(queryString, queryArgs, function(err, results) {
           // Should have one result:
+          if (err) {
+            console.log(err);
+            return;
+          } 
+          
           expect(results.length).to.equal(1);
 
           // TODO: If you don't have a column named text, change this test.
@@ -67,8 +72,8 @@ describe('Persistent Node Chat Server', function() {
 
   it('Should output all messages from the DB', function(done) {
     // Let's insert a message into the db
-       var queryString = "";
-       var queryArgs = [];
+       var queryString = "SELECT * FROM messages";
+       var queryArgs = [true]; //marioquestion
     // TODO - The exact query string and query args to use
     // here depend on the schema you design, so I'll leave
     // them up to you. */

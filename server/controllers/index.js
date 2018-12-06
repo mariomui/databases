@@ -13,10 +13,21 @@ module.exports = {
       //   }
       //   console.log(data, 'i am data in controollers');
       // });
+      
+   
     }, 
     
     // a function which handles a get request for all messages
     post: function (req, res) {
+
+      console.log(req.body, 'testing ');
+      models.messages.post(req.body, (err, data) => {
+        if (err) {
+          console.log(err);
+          return;
+        }
+        console.log(data, 'datadata');
+      });
       // let body = '';
       // const {json, url} = req;
       // req.on('data', (error, chunk) => {
@@ -31,10 +42,10 @@ module.exports = {
       //     }
       //     console.log(data);
       //   });
-
+      res.end('');
       // // });
-      console.log(req.body, 'get req body request get');
-      res.end(';llj;');
+      // console.log(req.body, 'get req body request get');
+      // res.end(';llj;');
     } // a function which handles posting a message to the database
   },
 
@@ -47,12 +58,15 @@ module.exports = {
     post: function (req, res) {
       var queryName = req.body.username;
       console.log(queryName,'This is my queryname');
-      models.messages.post(queryName, (error, results, fields) => {
+      models.users.post(queryName, (error, results, fields) => {
         if (error) {
           console.log(error, 'i am a error');
+          throw error;
           return;
         }
         console.log(results);
+        // console.log(req.body);
+       res.end('ending the func')
       });
         // models.messages.post(`INSERT INTO messages (text) VALUES('hellooooooo')`, 'hi', (err, data) => {
 

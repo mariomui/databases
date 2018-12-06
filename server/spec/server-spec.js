@@ -41,7 +41,7 @@ describe('Persistent Node Chat Server', function() {
         json: {
           username: 'Valjean',
           message: 'In mercy\'s name, three days is all I need.',
-          roomname: 'Hello',
+          // roomname: 'Hello',
           _roomId: 1,
           _userId: 2
         }

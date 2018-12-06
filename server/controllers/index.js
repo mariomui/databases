@@ -1,18 +1,18 @@
 var models = require('../models');
-var dbConnection = require('../db/index'); //mario
-var app = require('../app').app; //mario
-
+// var dbConnection = require('../db/index'); //mario
+// const app = require('../app'); //mario
+var express = require('express');
+var app = express();
 module.exports = {
   messages: {
     get: function (req, res) {
-      models.messages.get('SELECT * FROM messages;',(err, data) => {
-        if (err) {
-          console.log('err', err);
-          return;
-        }
-        console.log(data, 'i am data in controollers');
-        res.end('kdfjdkfj');
-      });
+      // models.messages.get('SELECT * FROM messages;',(err, data) => {
+      //   if (err) {
+      //     console.log('err', err);
+      //     return;
+      //   }
+      //   console.log(data, 'i am data in controollers');
+      // });
     }, 
     
     // a function which handles a get request for all messages
@@ -33,7 +33,7 @@ module.exports = {
       //   });
 
       // // });
-      console.log(req.body, 'akjdfkj');
+      console.log(req.body, 'get req body request get');
       res.end(';llj;');
     } // a function which handles posting a message to the database
   },
@@ -45,15 +45,27 @@ module.exports = {
     },
 
     post: function (req, res) {
-      app.post('/users', (request, response) => {
-        models.messages.post(`INSERT INTO messages (text) VALUES('hellooooooo')`, 'hi', (err, data) => {
-          if (err) {
-            console.log('err in post');
-            return;
-          }
-          console.log(data);
-        });
+      var queryName = req.body.username;
+      console.log(queryName,'This is my queryname');
+      models.messages.post(queryName, (error, results, fields) => {
+        if (error) {
+          console.log(error, 'i am a error');
+          return;
+        }
+        console.log(results);
       });
+        // models.messages.post(`INSERT INTO messages (text) VALUES('hellooooooo')`, 'hi', (err, data) => {
+
+      // app.post('/users', (request, response) => {
+      //   console.log('aqui');
+      //     if (err) {
+      //       console.log('err in post');
+      //       return;
+      //     }
+      //     console.log(data, 'i am in the post data');
+      //   });
+      //   res.end('mariooooooooo');
+      // });
     }
   }
 };

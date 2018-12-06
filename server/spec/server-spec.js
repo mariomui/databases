@@ -41,7 +41,9 @@ describe('Persistent Node Chat Server', function() {
         json: {
           username: 'Valjean',
           message: 'In mercy\'s name, three days is all I need.',
-          roomname: 'Hello'
+          roomname: 'Hello',
+          _roomId: 1,
+          _userId: 2
         }
       }, function () {
         // Now if we look in the database, we should find the
@@ -50,7 +52,7 @@ describe('Persistent Node Chat Server', function() {
         // TODO: You might have to change this test to get all the data from
         // your message table, since this is schema-dependent.
         var queryString = 'SELECT * FROM messages';
-        var queryArgs = [true]; //marioquestion
+        var queryArgs = []; //marioquestion
 
         dbConnection.query(queryString, queryArgs, function(err, results) {
           // Should have one result:
@@ -73,7 +75,7 @@ describe('Persistent Node Chat Server', function() {
   it('Should output all messages from the DB', function(done) {
     // Let's insert a message into the db
        var queryString = "SELECT * FROM messages";
-       var queryArgs = [true]; //marioquestion
+       var queryArgs = []; //marioquestion
     // TODO - The exact query string and query args to use
     // here depend on the schema you design, so I'll leave
     // them up to you. */
